@@ -9,6 +9,12 @@ const GlobalStyle = createGlobalStyle`
             font-style: normal;
         }
 
+*{
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+}
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -22,33 +28,29 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup, 
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video, input,textarea {
-	box-sizing: border-box;
 	font: inherit;
-	vertical-align: baseline;	
-   
-    list-style: none;
+	vertical-align: baseline;
 }
 
 
-span, h1, h2, h3, h4, h5, h6, p, button{
-    color: #ffffff;
-}
 
 html {
+    height: 100%;
 	font-family: -apple-system, "system-ui", Segoe UI, BlinkMacSystemFont
     Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
     sans-serif;
 }
 
 body {
+    width: 100%;
+    height: 100%;
 	font-family: Pretendard-Regular;
     background-color: #1F485E;
+    font-size: 16px;
     -webkit-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
-
-    
   }
 `;
 
