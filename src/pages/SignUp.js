@@ -35,6 +35,7 @@ const SignUp = () => {
           id="email"
           data-testid="email-input"
           value={emailInput.value}
+          placeholder="@를 포함하여 이메일을 입력해 주세요"
           onChange={(e) => emailInput.handleChange(e.target.value)}
         />
         <label htmlFor="password">비밀번호</label>
@@ -43,6 +44,7 @@ const SignUp = () => {
           id="password"
           data-testid="password-input"
           value={passwordInput.value}
+          placeholder="8자 이상 입력해 주세요"
           onChange={(e) => passwordInput.handleChange(e.target.value)}
         />
         {error && <span>{`회원가입 에러 :${error}`}</span>}
