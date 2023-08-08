@@ -1,5 +1,6 @@
 import { Suspense, lazy } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { UserRoute, PrivateRoute } from "./component/auth/AuthRoute";
 import styled from "styled-components";
 const Header = lazy(() => import("./component/layout/Header"));
 const Home = lazy(() => import("./pages/Home"));
@@ -15,9 +16,15 @@ function App() {
           <Header />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/signin" element={<SignIn />} />
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="/todo" element={<Todo />} />
+            <Route
+              path="/signin"
+              element={<UserRoute element={<SignIn />} />}
+            />
+            <Route
+              path="/signup"
+              element={<UserRoute element={<SignUp />} />}
+            />
+            <Route path="/todo" element={<PrivateRoute element={<Todo />} />} />
           </Routes>
         </Suspense>
       </BrowserRouter>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signinApi } from "../apis/api";
-import { useInputValidation } from "../utils/useInputValidation";
+import { useInput } from "../utils/useInput";
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -10,8 +10,8 @@ const SignIn = () => {
   const emailValidation = (email) => email.includes("@");
   const passwordValidation = (password) => password.length >= 8;
 
-  const emailInput = useInputValidation("", emailValidation);
-  const passwordInput = useInputValidation("", passwordValidation);
+  const emailInput = useInput("", emailValidation);
+  const passwordInput = useInput("", passwordValidation);
 
   const handleSignIn = async (e) => {
     e.preventDefault();

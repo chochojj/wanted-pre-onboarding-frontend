@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const useInputValidation = (inputValue, ValidationFunc) => {
+export const useInput = (inputValue, ValidationFunc) => {
   const [value, setValue] = useState(inputValue);
   const [isValid, setIsValid] = useState(false);
 
