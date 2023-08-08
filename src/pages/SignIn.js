@@ -1,15 +1,22 @@
+import { useNavigate } from "react-router-dom";
 import { useInputValidation } from "../utils/useInputValidation";
 
 const SignIn = () => {
+  const navigate = useNavigate();
+
   const emailValidation = (email) => email.includes("@");
   const passwordValidation = (password) => password.length >= 8;
 
   const emailInput = useInputValidation("", emailValidation);
   const passwordInput = useInputValidation("", passwordValidation);
 
+  const handleSignIn = () => {
+    navigate("/todo");
+  };
+
   return (
     <div>
-      <form>
+      <form onSubmit={handleSignIn}>
         <label htmlFor="email">이메일</label>
         <input
           type="email"
@@ -27,6 +34,7 @@ const SignIn = () => {
           onChange={(e) => passwordInput.handleChange(e.target.value)}
         />
         <button
+          type="submit"
           data-testid="signin-button"
           disabled={!emailInput.isValid || !passwordInput.isValid}
         >
