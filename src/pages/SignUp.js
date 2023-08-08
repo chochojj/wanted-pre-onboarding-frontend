@@ -1,3 +1,4 @@
+import { Container, Form } from "../style/styles";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signupApi } from "../apis/api";
@@ -21,12 +22,13 @@ const SignUp = () => {
       navigate("/signin");
     } catch (error) {
       setError(error.message);
+      console.log(error.message);
     }
   };
 
   return (
-    <div>
-      <form onSubmit={handleSignUp}>
+    <Container>
+      <Form onSubmit={handleSignUp}>
         <label htmlFor="email">이메일</label>
         <input
           type="email"
@@ -43,9 +45,7 @@ const SignUp = () => {
           value={passwordInput.value}
           onChange={(e) => passwordInput.handleChange(e.target.value)}
         />
-        {error && (
-          <div style={{ color: "salmon" }}>{`회원가입 에러 :${error}`}</div>
-        )}
+        {error && <span>{`회원가입 에러 :${error}`}</span>}
         <button
           type="submit"
           data-testid="signup-button"
@@ -53,8 +53,8 @@ const SignUp = () => {
         >
           회원가입
         </button>
-      </form>
-    </div>
+      </Form>
+    </Container>
   );
 };
 

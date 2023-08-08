@@ -1,3 +1,4 @@
+import { Container, Form } from "../style/styles";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signinApi } from "../apis/api";
@@ -26,8 +27,8 @@ const SignIn = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSignIn}>
+    <Container>
+      <Form onSubmit={handleSignIn}>
         <label htmlFor="email">이메일</label>
         <input
           type="email"
@@ -44,9 +45,7 @@ const SignIn = () => {
           value={passwordInput.value}
           onChange={(e) => passwordInput.handleChange(e.target.value)}
         />
-        {error && (
-          <div style={{ color: "salmon" }}>{`로그인 에러 :${error}`}</div>
-        )}
+        {error && <span>{`로그인 에러 :${error}`}</span>}
         <button
           type="submit"
           data-testid="signin-button"
@@ -54,8 +53,8 @@ const SignIn = () => {
         >
           로그인
         </button>
-      </form>
-    </div>
+      </Form>
+    </Container>
   );
 };
 

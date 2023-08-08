@@ -7,6 +7,14 @@ const axiosApi = axios.create({
   },
 });
 
+const authorizedApi = axios.create({
+  baseURL: "https://www.pre-onboarding-selection-task.shop",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${localStorage.getItem("token")}`,
+  },
+});
+
 //회원가입
 export const signupApi = async (email, password) => {
   try {
@@ -26,3 +34,25 @@ export const signinApi = async (email, password) => {
     throw new Error(error.response.data.message);
   }
 };
+
+//투두작성
+export const createTodo = async (todo) => {
+  try {
+    const response = await authorizedApi.post("/todos", { todo });
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+};
+
+//투두조회
+export const getTodos = async () => {
+  try {
+    const response = await authorizedApi.get("/todos");
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response.data.message);
+  }
+};
+
+//투두삭제

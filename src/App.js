@@ -2,7 +2,7 @@ import { Suspense, lazy } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { UserRoute, PrivateRoute } from "./component/auth/AuthRoute";
 import styled from "styled-components";
-const Header = lazy(() => import("./component/layout/Header"));
+const Header = lazy(() => import("./component/common/Header"));
 const Home = lazy(() => import("./pages/Home"));
 const SignUp = lazy(() => import("./pages/SignUp"));
 const SignIn = lazy(() => import("./pages/SignIn"));
