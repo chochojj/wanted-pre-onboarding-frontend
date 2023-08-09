@@ -34,7 +34,7 @@ const TodoList = () => {
   return (
     <div>
       <AddForm addTodo={addTodo} />
-      <Todos TodoList={todoList} />
+      <Todos todoList={todoList} />
     </div>
   );
 };
