@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signupApi } from "../apis/api";
 import { useInput } from "../utils/useInput";
+import Button from "../component/common/Button";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -48,13 +49,13 @@ const SignUp = () => {
           onChange={(e) => passwordInput.handleChange(e.target.value)}
         />
         {error && <span>{`회원가입 에러 :${error}`}</span>}
-        <button
+        <Button
           type="submit"
           data-testid="signup-button"
           disabled={!emailInput.isValid || !passwordInput.isValid}
         >
           회원가입
-        </button>
+        </Button>
       </Form>
     </Container>
   );
