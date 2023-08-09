@@ -10,7 +10,7 @@ const Todo = lazy(() => import("./pages/Todo"));
 
 function App() {
   return (
-    <Contain>
+    <Container>
       <BrowserRouter>
         <Suspense fallback={<div>Loading</div>}>
           <Header />
@@ -28,13 +28,13 @@ function App() {
           </Routes>
         </Suspense>
       </BrowserRouter>
-    </Contain>
+    </Container>
   );
 }
 
 export default App;
 
-const Contain = styled.div`
+const Container = styled.div`
   width: 100%;
   height: 100vh;
   height: 100dvh;
