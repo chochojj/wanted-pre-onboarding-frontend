@@ -29,12 +29,12 @@ const TodoList = () => {
       }
     };
     addTodo();
-  });
+  }, []);
 
   const deleteTodo = useCallback(async (id) => {
     try {
-      await deleteTodoApi(id); // API로부터 할 일 삭제
-      setTodoList((prev) => prev.filter((el) => el.id !== id)); // 삭제된 할 일 제외
+      await deleteTodoApi(id);
+      setTodoList((prev) => prev.filter((el) => el.id !== id));
     } catch (error) {
       console.log(error.message);
     }

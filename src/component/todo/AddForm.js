@@ -1,29 +1,23 @@
-import { useState, useRef, useEffect, memo } from "react";
+import { useState, memo } from "react";
 import styled from "styled-components";
 
 const AddForm = memo(({ addTodo }) => {
   const [value, setValue] = useState("");
-  const input = useRef(null);
 
   const onChangeInput = (e) => {
     setValue(e.target.value);
   };
 
-  useEffect(() => {
-    input.current.focus();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    addTodo(value);
     setValue("");
-  }, []);
+  };
 
   return (
-    <Container
-      onSubmit={(e) => {
-        e.preventDefault();
-        addTodo(value);
-      }}
-    >
+    <Container onSubmit={handleSubmit}>
       <input
         data-testid="new-todo-input"
-        ref={input}
         value={value}
         onChange={onChangeInput}
         placeholder={`할 일 입력하기 !`}
