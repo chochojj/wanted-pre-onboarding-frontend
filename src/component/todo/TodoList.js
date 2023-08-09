@@ -1,7 +1,12 @@
 import { useState, useEffect, useCallback } from "react";
 import AddForm from "./AddForm";
 import Todos from "./Todos";
-import { getTodosApi, createTodoApi, deleteTodoApi } from "../../apis/api";
+import {
+  getTodosApi,
+  createTodoApi,
+  updateTodoApi,
+  deleteTodoApi,
+} from "../../apis/api";
 
 const TodoList = () => {
   const [todoList, setTodoList] = useState([]);
@@ -31,6 +36,14 @@ const TodoList = () => {
     addTodo();
   }, []);
 
+  const updataTodo = useCallback(async (id, todo, isCompleted) => {
+    try {
+      await updateTodoApi(id, todo, isCompleted);
+    } catch (error) {
+      console.log(error.message);
+    }
+  }, []);
+
   const deleteTodo = useCallback(async (id) => {
     try {
       await deleteTodoApi(id);
@@ -46,6 +59,7 @@ const TodoList = () => {
       <Todos
         todoList={todoList}
         setTodoList={setTodoList}
+        updataTodo={updataTodo}
         deleteTodo={deleteTodo}
       />
     </div>
