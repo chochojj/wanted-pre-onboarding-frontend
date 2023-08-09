@@ -18,7 +18,7 @@ const TodoList = () => {
         console.log(data);
         setTodoList(data);
       } catch (error) {
-        console.error("데이터");
+        console.error("패치 오류");
       }
     };
     fetchTodo();
@@ -30,17 +30,28 @@ const TodoList = () => {
         const data = await createTodoApi(value);
         setTodoList((prev) => [...prev, data]);
       } catch (error) {
-        console.log(error.message);
+        console.error("작성 오류");
       }
     };
     addTodo();
   }, []);
 
-  const updataTodo = useCallback(async (id, todo, isCompleted) => {
+  const updateTodo = useCallback(async (id, newTodo, isCompleted) => {
     try {
-      await updateTodoApi(id, todo, isCompleted);
+      await updateTodoApi(id, newTodo, isCompleted);
+      setTodoList((prevTodos) => {
+        const updatedTodos = prevTodos.map((todo) =>
+          todo.id === id
+            ? { ...todo, todo: newTodo, isCompleted: isCompleted }
+            : todo
+        );
+        const found = updatedTodos.some((todo) => todo.id === id);
+        return found
+          ? updatedTodos
+          : [...updatedTodos, { id, todo: newTodo, isCompleted: isCompleted }];
+      });
     } catch (error) {
-      console.log(error.message);
+      console.error("수정 오류");
     }
   }, []);
 
@@ -49,7 +60,7 @@ const TodoList = () => {
       await deleteTodoApi(id);
       setTodoList((prev) => prev.filter((el) => el.id !== id));
     } catch (error) {
-      console.log(error.message);
+      console.error("삭제 오류");
     }
   }, []);
 
@@ -59,7 +70,7 @@ const TodoList = () => {
       <Todos
         todoList={todoList}
         setTodoList={setTodoList}
-        updataTodo={updataTodo}
+        updateTodo={updateTodo}
         deleteTodo={deleteTodo}
       />
     </div>

@@ -1,9 +1,17 @@
 import { memo, useState } from "react";
 
-const Todos = memo(({ todoList, setTodoList, updataTodo, deleteTodo }) => {
+const Todos = memo(({ todoList, setTodoList, updateTodo, deleteTodo }) => {
   const [editableTodoId, setEditableTodoId] = useState(null);
   const [modifiedTodo, setModifiedTodo] = useState("");
   const [modifiedIsCompleted, setModifiedIsCompleted] = useState(false);
+
+  const handleInputChange = (e) => {
+    setModifiedTodo(e.target.value);
+  };
+
+  const handleCheckboxChange = (e) => {
+    setModifiedIsCompleted(e.target.checked);
+  };
 
   const handleModify = (id, todo, isCompleted) => {
     setEditableTodoId(id);
@@ -17,12 +25,13 @@ const Todos = memo(({ todoList, setTodoList, updataTodo, deleteTodo }) => {
     setModifiedIsCompleted(false);
   };
 
-  const handleInputChange = (e) => {
-    setModifiedTodo(e.target.value);
-  };
-
-  const handleCheckboxChange = (e) => {
-    setModifiedIsCompleted(e.target.checked);
+  const handleUpdate = async (id, modifiedTodo, modifiedIsCompleted) => {
+    if (modifiedTodo !== null && modifiedTodo.trim() === "") {
+      handleCancel();
+      return;
+    }
+    updateTodo(id, modifiedTodo, modifiedIsCompleted);
+    handleCancel();
   };
 
   const handleDelete = (id) => {
@@ -38,7 +47,7 @@ const Todos = memo(({ todoList, setTodoList, updataTodo, deleteTodo }) => {
               <input
                 type="checkbox"
                 defaultChecked={data.isCompleted}
-                onChange={() => handleCheckboxChange(data.id)}
+                onChange={handleCheckboxChange}
               />
               {editableTodoId === data.id ? (
                 <>
@@ -47,7 +56,14 @@ const Todos = memo(({ todoList, setTodoList, updataTodo, deleteTodo }) => {
                     value={modifiedTodo}
                     onChange={handleInputChange}
                   />
-                  <button data-testid="submit-button">제출</button>
+                  <button
+                    data-testid="submit-button"
+                    onClick={() =>
+                      handleUpdate(data.id, modifiedTodo, modifiedIsCompleted)
+                    }
+                  >
+                    제출
+                  </button>
                   <button data-testid="cancel-button" onClick={handleCancel}>
                     취소
                   </button>
