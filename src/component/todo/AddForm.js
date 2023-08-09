@@ -12,7 +12,7 @@ const AddForm = memo(({ addTodo }) => {
   useEffect(() => {
     input.current.focus();
     setValue("");
-  }, [addTodo]);
+  }, []);
 
   return (
     <Container
