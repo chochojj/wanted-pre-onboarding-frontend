@@ -1,5 +1,6 @@
 import { useState, memo } from "react";
 import styled from "styled-components";
+import Button from "../common/Button";
 
 const AddForm = memo(({ addTodo }) => {
   const [value, setValue] = useState("");
@@ -22,9 +23,9 @@ const AddForm = memo(({ addTodo }) => {
         onChange={onChangeInput}
         placeholder={`할 일 입력하기 !`}
       />
-      <button type="submit" data-testid="new-todo-add-button">
+      <Button type="submit" data-testid="new-todo-add-button" width="70px">
         추가
-      </button>
+      </Button>
     </Container>
   );
 });
@@ -36,4 +37,12 @@ const Container = styled.form`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 12px;
+
+  input {
+    width: 270px;
+    height: 30px;
+    margin-right: 2px;
+    padding: 0 5px;
+  }
 `;
