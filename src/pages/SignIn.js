@@ -1,3 +1,4 @@
+import styled from "styled-components";
 import { Container, Form } from "../style/styles";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -28,7 +29,8 @@ const SignIn = () => {
   };
 
   return (
-    <Container>
+    <Wrap>
+      <h1>로그인</h1>
       <Form onSubmit={handleSignIn}>
         <label htmlFor="email">이메일</label>
         <input
@@ -57,8 +59,16 @@ const SignIn = () => {
           로그인
         </Button>
       </Form>
-    </Container>
+    </Wrap>
   );
 };
 
 export default SignIn;
+
+const Wrap = styled(Container)`
+  h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    text-align: center;
+  }
+`;
