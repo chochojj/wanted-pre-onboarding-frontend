@@ -6,6 +6,10 @@
 
 `git clone` 후, `npm install & npm start`
 
+### 배포링크
+
+[투두리스트](https://wanted-pre-onboarding-frontend-chocho.netlify.app/)
+
 ### 데모 영상
 
 | 로그인/회원가입 | 
