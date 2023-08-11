@@ -45,10 +45,7 @@ const TodoList = () => {
             ? { ...todo, todo: newTodo, isCompleted: isCompleted }
             : todo
         );
-        const found = updatedTodos.some((todo) => todo.id === id);
-        return found
-          ? updatedTodos
-          : [...updatedTodos, { id, todo: newTodo, isCompleted: isCompleted }];
+        return updatedTodos;
       });
     } catch (error) {
       console.error("수정 오류");
