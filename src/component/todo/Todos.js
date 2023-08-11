@@ -14,6 +14,11 @@ const Todos = memo(({ todoList, setTodoList, updateTodo, deleteTodo }) => {
     setModifiedIsCompleted(e.target.checked);
   };
 
+  const handleCheckboxModify = (id, todo, isCompleted) => {
+    const checked = !isCompleted;
+    updateTodo(id, todo, checked);
+  };
+
   const handleModify = (id, todo, isCompleted) => {
     setEditableTodoId(id);
     setModifiedTodo(todo);
@@ -77,7 +82,9 @@ const Todos = memo(({ todoList, setTodoList, updateTodo, deleteTodo }) => {
                   <input
                     type="checkbox"
                     defaultChecked={data.isCompleted}
-                    onChange={handleCheckboxChange}
+                    onClick={() =>
+                      handleCheckboxModify(data.id, data.todo, data.isCompleted)
+                    }
                   />
                   <span>{data.todo}</span>
                 </label>
