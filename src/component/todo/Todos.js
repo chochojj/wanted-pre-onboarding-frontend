@@ -31,7 +31,7 @@ const Todos = memo(({ todoList, setTodoList, updateTodo, deleteTodo }) => {
     setModifiedIsCompleted(false);
   };
 
-  const handleUpdate = async (id, modifiedTodo, modifiedIsCompleted) => {
+  const handleUpdate = (id, modifiedTodo, modifiedIsCompleted) => {
     if (modifiedTodo !== null && modifiedTodo.trim() === "") {
       handleCancel();
       return;
