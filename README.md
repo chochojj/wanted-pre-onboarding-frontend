@@ -136,5 +136,5 @@ export const useInput = (inputValue, ValidationFunc) => {
   export default TodoList;
  
 ### 아쉬운 점
-- 회원가입과 로그인에서 공통 UI를 분리하지 못한 점
+- 회원가입과 로그인에서 공통 로직을 분리하지 못한 점
 - 모든 컴포넌트에서 일관되게 비즈니스 로직과 뷰를 분리하지 않은 것
